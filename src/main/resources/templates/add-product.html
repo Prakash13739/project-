@@ -1,0 +1,81 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>Add Product - Mini-Amazon</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="container d-flex justify-content-center py-5 animate-fade-in-up">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="glass-card shimmer">
+                    <div class="text-center mb-4">
+                        <div class="auth-icon-wrapper" style="background: var(--gradient-accent);">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                        <h2 class="auth-title">Add New Product</h2>
+                        <p class="auth-subtitle">Expand the premium collection</p>
+                    </div>
+
+                    <form th:action="@{/product/add}" th:object="${product}" method="post">
+                        <div class="auth-input-group">
+                            <label>Product Name</label>
+                            <div class="auth-input-wrapper">
+                                <span class="auth-input-icon"><i class="fa-solid fa-tag"></i></span>
+                                <input type="text" th:field="*{name}" placeholder="Enter product name" required>
+                            </div>
+                        </div>
+
+                        <div class="auth-input-group">
+                            <label>Description</label>
+                            <div class="auth-input-wrapper">
+                                <span class="auth-input-icon" style="align-self: flex-start; margin-top: 1rem;"><i
+                                        class="fa-solid fa-align-left"></i></span>
+                                <textarea th:field="*{description}" rows="3"
+                                    style="width: 100%; background: transparent; border: none; outline: none; color: #fff; padding: 0.85rem 1rem;"
+                                    placeholder="Enter product description" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="auth-input-group">
+                                    <label>Price ($)</label>
+                                    <div class="auth-input-wrapper">
+                                        <span class="auth-input-icon"><i class="fa-solid fa-dollar-sign"></i></span>
+                                        <input type="number" step="0.01" th:field="*{price}" placeholder="0.00"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="auth-input-group">
+                                    <label>Category</label>
+                                    <div class="auth-input-wrapper">
+                                        <span class="auth-input-icon"><i class="fa-solid fa-layer-group"></i></span>
+                                        <input type="text" th:field="*{category}" placeholder="Electronics..." required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="auth-input-group">
+                            <label>Image URL</label>
+                            <div class="auth-input-wrapper">
+                                <span class="auth-input-icon"><i class="fa-solid fa-image"></i></span>
+                                <input type="text" th:field="*{imageUrl}" placeholder="http://..." required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="auth-submit-btn py-3 mt-3">
+                            <i class="fa-solid fa-cloud-arrow-up me-2"></i>Publish Product
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

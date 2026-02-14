@@ -1,0 +1,96 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>Login - Mini-Amazon</title>
+</head>
+
+<body>
+
+    <div layout:fragment="content">
+        <div class="auth-wrapper">
+            <div class="auth-container">
+                <div class="auth-card">
+
+                    <!-- Glossy Icon -->
+                    <div class="text-center mb-4" style="position: relative; z-index: 1;">
+                        <div class="auth-icon-wrapper">
+                            <i class="fa-solid fa-fingerprint"></i>
+                        </div>
+                        <h2 class="auth-title">Welcome Back</h2>
+                        <p class="auth-subtitle">Sign in to your premium shopping experience</p>
+                    </div>
+
+                    <!-- Error Alert -->
+                    <div th:if="${param.error}" class="auth-alert auth-alert-error">
+                        <i class="fa-solid fa-circle-exclamation me-2"></i>
+                        Invalid username or password. Please try again.
+                    </div>
+
+                    <!-- Success Alert -->
+                    <div th:if="${param.logout}" class="auth-alert auth-alert-success">
+                        <i class="fa-solid fa-check-circle me-2"></i>
+                        You have been logged out successfully.
+                    </div>
+
+                    <!-- Login Form -->
+                    <form th:action="@{/login}" method="post" style="position: relative; z-index: 1;">
+
+                        <div class="auth-input-group">
+                            <label>Username</label>
+                            <div class="auth-input-wrapper">
+                                <span class="auth-input-icon"><i class="fa-solid fa-user"></i></span>
+                                <input type="text" name="username" placeholder="Enter your username" required
+                                    autocomplete="username">
+                            </div>
+                        </div>
+
+                        <div class="auth-input-group">
+                            <label>Password</label>
+                            <div class="auth-input-wrapper">
+                                <span class="auth-input-icon"><i class="fa-solid fa-lock"></i></span>
+                                <input type="password" name="password" placeholder="Enter your password" required
+                                    autocomplete="current-password">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="auth-submit-btn">
+                            <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Sign In
+                        </button>
+                    </form>
+
+                    <!-- Divider -->
+                    <div class="auth-divider" style="position: relative; z-index: 1;">
+                        <span>or</span>
+                    </div>
+
+                    <!-- Register Link -->
+                    <div class="text-center" style="position: relative; z-index: 1;">
+                        <span style="color: rgba(255,255,255,0.5); font-size: 0.9rem;">New to Mini-Amazon? </span>
+                        <a href="/register" class="auth-link">Create Account</a>
+                    </div>
+
+                    <!-- Features -->
+                    <div class="auth-features" style="position: relative; z-index: 1;">
+                        <div class="auth-feature">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span>Secure</span>
+                        </div>
+                        <div class="auth-feature">
+                            <i class="fa-solid fa-bolt"></i>
+                            <span>Fast</span>
+                        </div>
+                        <div class="auth-feature">
+                            <i class="fa-solid fa-lock"></i>
+                            <span>Encrypted</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

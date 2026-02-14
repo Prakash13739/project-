@@ -1,0 +1,102 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>Checkout - Mini-Amazon</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="container py-5 animate-fade-in-up">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <!-- Steps Indicator -->
+                    <div class="d-flex justify-content-center align-items-center mb-5">
+                        <div class="text-center px-4">
+                            <div class="rounded-circle bg-primary-glass text-white d-flex align-items-center justify-content-center fw-bold mx-auto mb-2"
+                                style="width: 45px; height: 45px; box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);">1</div>
+                            <span class="small fw-600 text-white">Shipping</span>
+                        </div>
+                        <div class="mx-2 border-top border-light border-opacity-10"
+                            style="width: 60px; margin-top: -20px;"></div>
+                        <div class="text-center px-4 opacity-40">
+                            <div class="rounded-circle glass-pill d-flex align-items-center justify-content-center fw-bold mx-auto mb-2"
+                                style="width: 45px; height: 45px;">2</div>
+                            <span class="small fw-600">Payment</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card shimmer p-4 p-md-5">
+                        <div
+                            class="d-flex justify-content-between align-items-center mb-5 pb-3 border-bottom border-light border-opacity-10">
+                            <h2 class="auth-title mb-0"><i
+                                    class="fa-solid fa-truck-fast me-3 text-primary-light"></i>Shipping Details</h2>
+                            <div class="text-end">
+                                <p class="small text-muted mb-0 text-uppercase letter-spacing-1">Amount Due</p>
+                                <span class="h4 fw-bold text-info mb-0" th:text="${'$' + total}">$0.00</span>
+                            </div>
+                        </div>
+
+                        <form th:action="@{/checkout}" method="post">
+                            <div class="auth-input-group">
+                                <label>Recipient's Full Name</label>
+                                <div class="auth-input-wrapper">
+                                    <span class="auth-input-icon"><i class="fa-solid fa-user-tag"></i></span>
+                                    <input type="text" name="fullName" placeholder="Enter recipient's name" required>
+                                </div>
+                            </div>
+
+                            <div class="auth-input-group">
+                                <label>Delivery Address</label>
+                                <div class="auth-input-wrapper">
+                                    <span class="auth-input-icon"><i class="fa-solid fa-location-dot"></i></span>
+                                    <input type="text" name="address" placeholder="Street name and number" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="auth-input-group">
+                                        <label>City</label>
+                                        <div class="auth-input-wrapper">
+                                            <span class="auth-input-icon"><i class="fa-solid fa-city"></i></span>
+                                            <input type="text" name="city" placeholder="New York" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="auth-input-group">
+                                        <label>Zip Code</label>
+                                        <div class="auth-input-wrapper">
+                                            <span class="auth-input-icon"><i class="fa-solid fa-mailbox"></i></span>
+                                            <input type="text" name="zip" placeholder="10001" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-5 d-flex gap-3">
+                                <a href="/cart" class="btn-glass-sm py-3 px-4 d-flex align-items-center">
+                                    <i class="fa-solid fa-arrow-left me-2"></i> Back
+                                </a>
+                                <button type="submit" class="auth-submit-btn py-3 mt-0 flex-grow-1">
+                                    Continue to Payment <i class="fa-solid fa-arrow-right ms-2"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Security Badge -->
+                    <div class="text-center mt-4">
+                        <p class="text-muted small">
+                            <i class="fa-solid fa-lock me-2 text-success"></i>
+                            Your data is secured with AES-256 grade encryption
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

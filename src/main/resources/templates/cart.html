@@ -1,0 +1,92 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>Shopping Cart - Mini-Amazon</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="container py-5 animate-fade-in-up">
+            <h2 class="display-5 fw-bold mb-4" style="letter-spacing: -1px;"><i
+                    class="fa-solid fa-shopping-cart me-3 text-primary-light"></i>Your Premium Cart</h2>
+
+            <div th:if="${cart.items.empty}" class="text-center py-5 glass-card shimmer">
+                <i class="fa-solid fa-basket-shopping fa-4x text-muted mb-4"></i>
+                <h3 class="fw-bold">Your cart is empty</h3>
+                <p class="text-secondary mb-4">Discover our collection of premium products and start your journey.</p>
+                <a href="/" class="auth-submit-btn d-inline-block px-5" style="width: auto;">Explore Products</a>
+            </div>
+
+            <div th:if="${!cart.items.empty}">
+                <div class="glass-card p-0 mb-5 overflow-hidden">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th class="p-4">Product Details</th>
+                                <th class="p-4">Price</th>
+                                <th class="p-4 text-center">Quantity</th>
+                                <th class="p-4">Subtotal</th>
+                                <th class="p-4 text-end">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="item : ${cart.items}">
+                                <td class="p-4 align-middle">
+                                    <div class="d-flex align-items-center cart-item-info">
+                                        <img th:src="${item.product.imageUrl}" class="rounded-3 me-3"
+                                            style="width: 80px; height: 80px; object-fit: cover; border: 1px solid rgba(255,255,255,0.1);">
+                                        <div>
+                                            <h5 class="mb-1 text-white" th:text="${item.product.name}">Product Name</h5>
+                                            <span class="glass-info-badge" style="font-size: 0.65rem;"
+                                                th:text="${item.product.category}">Category</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="p-4 align-middle text-secondary fw-500"
+                                    th:text="${'$' + item.product.price}">$99.99</td>
+                                <td class="p-4 align-middle text-center">
+                                    <span class="glass-pill px-4 py-2" th:text="${item.quantity}">1</span>
+                                </td>
+                                <td class="p-4 align-middle fw-bold text-white"
+                                    th:text="${'$' + (item.product.price * item.quantity)}">$99.99</td>
+                                <td class="p-4 align-middle text-end">
+                                    <a th:href="@{/cart/remove/{id}(id=${item.id})}" class="btn-logout"
+                                        title="Remove Item">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row justify-content-end">
+                    <div class="col-md-5 col-lg-4">
+                        <div class="glass-card shimmer">
+                            <h4 class="fw-bold mb-4">Order Summary</h4>
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="cart-summary-label">Subtotal</span>
+                                <span class="cart-summary-value" th:text="${'$' + total}">$0.00</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="cart-summary-label">Shipping</span>
+                                <span class="cart-summary-value text-success">Free</span>
+                            </div>
+                            <hr class="border-secondary opacity-25 my-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <span class="h5 fw-bold mb-0">Total</span>
+                                <span class="h3 fw-bold text-info mb-0" th:text="${'$' + total}">$0.00</span>
+                            </div>
+                            <a href="/checkout" class="auth-submit-btn py-3 text-center d-block">
+                                Checkout Securely <i class="fa-solid fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

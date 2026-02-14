@@ -1,0 +1,59 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>Home - Mini-Amazon</title>
+</head>
+
+<body>
+
+    <div layout:fragment="content">
+        <!-- Hero Section -->
+        <section class="container py-5 text-center hero-animate animate-fade-in-up">
+            <h1 class="display-3 fw-bold mb-3" style="letter-spacing: -1.5px;">Welcome to <span class="brand-text"
+                    style="font-size: inherit;">Mini-Amazon</span></h1>
+            <p class="lead text-secondary mb-5 mx-auto" style="max-width: 600px; font-size: 1.25rem;">
+                The ultimate premium shopping experience, crafted with cutting-edge technology and
+                stunning glassmorphism design.
+            </p>
+        </section>
+
+        <!-- Product Grid -->
+        <div class="container pb-5">
+            <div class="row g-4">
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3" th:each="product : ${products}">
+                    <div class="product-card">
+                        <div class="position-relative">
+                            <img th:src="${product.imageUrl}" alt="Product Image" class="product-image">
+                            <!-- Admin Delete Badge -->
+                            <a th:if="${isAdmin}" th:href="@{/product/delete/{id}(id=${product.id})}"
+                                class="btn btn-danger btn-sm position-absolute top-0 end-0 m-2 rounded-circle"
+                                title="Delete Product" onclick="return confirm('Are you sure?')">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </div>
+                        <div class="product-body text-center">
+                            <h5 class="product-title" th:text="${product.name}">Product Name</h5>
+                            <p class="product-price" th:text="${'$' + product.price}">$99.99</p>
+                            <a th:href="@{/product/{id}(id=${product.id})}" class="btn btn-primary-glass w-100">
+                                <i class="fa-solid fa-eye me-2"></i>View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div class="text-center py-5" th:if="${products.empty}">
+                <div class="glass-card d-inline-block">
+                    <i class="fa-solid fa-box-open fa-3x text-muted mb-3"></i>
+                    <h3>No products found</h3>
+                    <p class="text-muted">Check back later for new arrivals.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

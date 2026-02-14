@@ -1,0 +1,44 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>Order Confirmed - Mini-Amazon</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="container d-flex justify-content-center py-5 animate-fade-in-up">
+            <div class="col-12 col-md-8 col-lg-6">
+                <div class="glass-card text-center py-5 shimmer">
+                    <div class="auth-icon-wrapper mb-4"
+                        style="background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); width: 120px; height: 120px;">
+                        <i class="fa-solid fa-check fa-3x"></i>
+                    </div>
+
+                    <h1 class="display-4 fw-bold mb-3" style="letter-spacing: -1.5px;">Order Success!</h1>
+                    <p class="lead text-secondary mb-5 px-4">
+                        Thank you for choosing <span class="brand-text" style="font-size: inherit;">Mini-Amazon</span>.
+                        Your premium order is being prepared for shipment.
+                    </p>
+
+                    <div class="d-flex flex-column gap-3 align-items-center mb-5">
+                        <div class="glass-pill px-4 py-2">
+                            <i class="fa-solid fa-envelope me-2 text-primary-light"></i> Confirmation email sent to your
+                            inbox
+                        </div>
+                        <div class="glass-pill px-4 py-2">
+                            <i class="fa-solid fa-clock me-2 text-primary-light"></i> Estimated delivery: 3-5 Business
+                            Days
+                        </div>
+                    </div>
+
+                    <a href="/" class="auth-submit-btn d-inline-block px-5 py-3" style="width: auto;">
+                        <i class="fa-solid fa-house-chimney me-2"></i>Back to Storefront
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

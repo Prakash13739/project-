@@ -1,0 +1,96 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout}">
+
+<head>
+    <title>Secure Payment - Mini-Amazon</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="container py-5 animate-fade-in-up">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-6">
+                    <!-- Steps Indicator -->
+                    <div class="d-flex justify-content-center align-items-center mb-5">
+                        <div class="text-center px-4 opacity-40">
+                            <div class="rounded-circle glass-pill mx-auto mb-2 d-flex align-items-center justify-content-center fw-bold"
+                                style="width: 45px; height: 45px;">
+                                <i class="fa-solid fa-check text-success"></i>
+                            </div>
+                            <span class="small fw-600">Shipping</span>
+                        </div>
+                        <div class="mx-2 border-top border-light border-opacity-10"
+                            style="width: 60px; margin-top: -20px;"></div>
+                        <div class="text-center px-4">
+                            <div class="rounded-circle bg-primary-glass text-white d-flex align-items-center justify-content-center fw-bold mx-auto mb-2"
+                                style="width: 45px; height: 45px; box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);">2</div>
+                            <span class="small fw-600 text-white">Payment</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card shimmer">
+                        <div class="text-center mb-5">
+                            <div class="auth-icon-wrapper" style="background: var(--gradient-primary);">
+                                <i class="fa-solid fa-credit-card"></i>
+                            </div>
+                            <h2 class="auth-title">Complete Payment</h2>
+                            <div class="price-tag mt-3" th:text="${'$' + totalAmount}">$0.00</div>
+                            <div class="d-inline-flex align-items-center glass-pill py-2 px-3">
+                                <i class="fa-solid fa-lock text-success me-2"></i>
+                                <span class="small text-white-50">256-bit SSL Secure Connection</span>
+                            </div>
+                        </div>
+
+                        <form th:action="@{/process-order}" method="post">
+                            <input type="hidden" name="shippingAddress" th:value="${shippingAddress}">
+
+                            <div class="auth-input-group">
+                                <label>Card Number</label>
+                                <div class="auth-input-wrapper">
+                                    <span class="auth-input-icon"><i class="fa-solid fa-credit-card"></i></span>
+                                    <input type="text" name="cardNumber" placeholder="0000 0000 0000 0000" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-7">
+                                    <div class="auth-input-group">
+                                        <label>Expiry Date</label>
+                                        <div class="auth-input-wrapper">
+                                            <span class="auth-input-icon"><i class="fa-solid fa-calendar"></i></span>
+                                            <input type="text" name="expiry" placeholder="MM/YY" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="auth-input-group">
+                                        <label>CVV / CVC</label>
+                                        <div class="auth-input-wrapper">
+                                            <span class="auth-input-icon"><i class="fa-solid fa-lock"></i></span>
+                                            <input type="password" name="cvv" placeholder="123" maxlength="4" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="auth-submit-btn py-3 mt-4">
+                                <i class="fa-solid fa-shield-check me-2"></i> Confirm & Pay Now
+                            </button>
+                        </form>
+
+                        <div class="mt-4 pt-3 text-center border-top border-light border-opacity-10">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png"
+                                height="15" class="me-3 opacity-50">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/1280px-Mastercard-logo.svg.png"
+                                height="20" class="me-3 opacity-50">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1200px-PayPal.svg.png"
+                                height="20" class="opacity-50">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

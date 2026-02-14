@@ -1,0 +1,58 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/resources/*.jar
+!**/src/test/resources/*.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/resources/*.jar
+!**/src/test/resources/*.jar
+
+### VS Code ###
+.vscode/
+
+### Logs ###
+*.log
+startup_log*
+app_log*
+build_log*
+build_output*
+compilation_error*
+final_debug*
+curl_check.txt
+curl_output.txt
+dependency_log.txt
+login_rendered.html
+test_home*
+test_login*
+
+### OS ###
+.DS_Store
+Thumbs.db
+
+### Local Maven ###
+local-m2*/
+settings.xml
+settings_central.xml
+run.bat
+setup_instructions.bat
